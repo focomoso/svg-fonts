@@ -1,0 +1,160 @@
+<html>
+  <head>
+    <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js'></script>
+    <script src="js/block-font.js"></script>
+
+
+    <style type="text/css">
+
+      #name-output, #password-output {
+        background-color: #d8da3d;
+        height: 120;
+        box-sizing: border-box;
+        outline: none;
+        padding: 10;
+      }
+      #name-output:hover, #password-output:hover {
+        outline: none;
+        box-sizing: border-box;
+        border: solid red 1px;
+      }
+
+      #hidden-div {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+      #name-input {
+      }
+    </style>
+
+  </head>
+  <body>
+    Name:<br>
+    <div id='name-output' tabindex='1'>
+    </div>
+    Password:<br>
+    <div id='password-output' tabindex='2'>
+    </div>
+
+    <div id='hidden-div'>
+    <form>
+      <input type="text" id='name-input'/>
+      <input type="text" id='password-input'/>
+    </form>
+    </div>
+<br>
+
+<svg width="600" height="600">
+
+  <symbol id="sym01" viewBox="0 0 100 100" overflow="visible">
+
+    <polygon
+      vector-effect="non-scaling-stroke"
+      stroke-linejoin="round"
+      points="0,25 50,0 100,25 50,50 "
+      style="fill:#0000ff; stroke:black; stroke-width:1"
+    />
+    <polygon
+      vector-effect="non-scaling-stroke"
+      stroke-linejoin="round"
+      points="0,25 50,50 50,100 0,75 "
+      style="fill:#0000cc; stroke:black; stroke-width:1"
+    />
+    <polygon
+      vector-effect="non-scaling-stroke"
+      stroke-linejoin="round"
+      points="50,50 100,25 100,75 50,100 "
+      style="fill:#000099; stroke:black; stroke-width:1"
+    />
+
+  </symbol>
+
+  <rect x='0' y='0' width='600' height='120' style="fill:gray; stroke:black; stroke-width:1" />
+
+<!-- 'A' -->
+  <use x="10" y="70" width="20" height="20" xlink:href="#sym01"/>
+  <use x="50" y="90" width="20" height="20" xlink:href="#sym01"/>
+
+  <use x="10" y="60" width="20" height="20" xlink:href="#sym01"/>
+  <use x="50" y="80" width="20" height="20" xlink:href="#sym01"/>
+
+
+  <use x="10" y="50" width="20" height="20" xlink:href="#sym01"/>
+  <use x="20" y="55" width="20" height="20" xlink:href="#sym01"/>
+  <use x="30" y="60" width="20" height="20" xlink:href="#sym01"/>
+  <use x="40" y="65" width="20" height="20" xlink:href="#sym01"/>
+  <use x="50" y="70" width="20" height="20" xlink:href="#sym01"/>
+
+  <use x="10" y="40" width="20" height="20" xlink:href="#sym01"/>
+  <use x="50" y="60" width="20" height="20" xlink:href="#sym01"/>
+
+  <use x="10" y="30" width="20" height="20" xlink:href="#sym01"/>
+  <use x="50" y="50" width="20" height="20" xlink:href="#sym01"/>
+
+  <use x="10" y="20" width="20" height="20" xlink:href="#sym01"/>
+  <use x="50" y="40" width="20" height="20" xlink:href="#sym01"/>
+
+  <use x="20" y="15" width="20" height="20" xlink:href="#sym01"/>
+  <use x="30" y="20" width="20" height="20" xlink:href="#sym01"/>
+  <use x="40" y="25" width="20" height="20" xlink:href="#sym01"/>
+
+</svg>
+
+    <script>
+
+      var nameData = [];
+      var passwordData = [];
+
+      $('#name-input').bind('input', function(e) {
+
+        nameData = e.target.value.split('');
+
+        d3.select('#name-output')
+            .html('')
+            .selectAll('div')
+            .data(nameData)
+          .enter()
+            .append('svg')
+              .attr('width', 70)
+            .append('rect', 100)
+              .attr('width', function(d) {
+                return d == ' ' ? 1 : 60;
+              })
+              .attr('height', function(d) {
+                return d == ' ' ? 1 : 100;
+              })
+              .attr('y', 0)
+              .attr('x', 0)
+      });
+
+      $('#password-input').bind('input', function(e) {
+
+        passwordData = e.target.value.split('');
+
+        d3.select('#password-output')
+            .html('')
+            .selectAll('div')
+            .data(passwordData)
+          .enter()
+            .append('svg')
+              .attr('width', 70)
+            .append('circle')
+              .attr('cy', 50)
+              .attr('cx', 35)
+              .attr('r', 33);
+
+      });
+
+
+      $('#name-output').focusin( function(e){
+        $('#name-input').focus();
+      });
+      $('#password-output').focusin( function(e){
+        $('#password-input').focus();
+      });
+
+    </script>
+  </body>
+</html>
