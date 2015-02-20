@@ -36,7 +36,7 @@ var BlockFont = (function() {
    */
   this.blockW = 10;
   this.blockH = 10;
-  this.color = "#808080";
+  this.color = "#ff0000";
 
   /**
    * Init

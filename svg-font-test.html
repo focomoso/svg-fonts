@@ -46,8 +46,10 @@
     </div>
 <br>
 
+
 <svg width="600" height="600">
 
+  <!-- blue block -->
   <symbol id="sym01" viewBox="0 0 100 100" overflow="visible">
 
     <polygon
@@ -70,7 +72,7 @@
     />
 
   </symbol>
-
+<!-- background -->
   <rect x='0' y='0' width='600' height='120' style="fill:gray; stroke:black; stroke-width:1" />
 
 <!-- 'A' -->
@@ -102,59 +104,63 @@
 
 </svg>
 
-    <script>
+<script>
 
-      var nameData = [];
-      var passwordData = [];
+var nameData = [];
+var passwordData = [];
 
-      $('#name-input').bind('input', function(e) {
+function writeBlockStr(str, domId) {
 
-        nameData = e.target.value.split('');
+  nameData = str.split('');
 
-        d3.select('#name-output')
-            .html('')
-            .selectAll('div')
-            .data(nameData)
-          .enter()
-            .append('svg')
-              .attr('width', 70)
-            .append('rect', 100)
-              .attr('width', function(d) {
-                return d == ' ' ? 1 : 60;
-              })
-              .attr('height', function(d) {
-                return d == ' ' ? 1 : 100;
-              })
-              .attr('y', 0)
-              .attr('x', 0)
-      });
+  d3.select(domId)
+      .html('')
+      .selectAll('div')
+      .data(nameData)
+    .enter()
+      .append('svg')
+        .attr('width', 70)
+        .attr('height', 100)
+      .append('rect')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', 60)
+        .attr('height', 100)
+  ;
+}
 
-      $('#password-input').bind('input', function(e) {
+$('#name-input').bind('input', function(e) {
 
-        passwordData = e.target.value.split('');
+  writeBlockStr(e.target.value, '#name-output');
 
-        d3.select('#password-output')
-            .html('')
-            .selectAll('div')
-            .data(passwordData)
-          .enter()
-            .append('svg')
-              .attr('width', 70)
-            .append('circle')
-              .attr('cy', 50)
-              .attr('cx', 35)
-              .attr('r', 33);
+});
 
-      });
+$('#password-input').bind('input', function(e) {
+
+  passwordData = e.target.value.split('');
+
+  d3.select('#password-output')
+      .html('')
+      .selectAll('div')
+      .data(passwordData)
+    .enter()
+      .append('svg')
+        .attr('width', 70)
+      .append('circle')
+        .attr('cy', 50)
+        .attr('cx', 35)
+        .attr('r', 33);
+
+});
 
 
-      $('#name-output').focusin( function(e){
-        $('#name-input').focus();
-      });
-      $('#password-output').focusin( function(e){
-        $('#password-input').focus();
-      });
+$('#name-output').focusin( function(e){
+  $('#name-input').focus();
+});
+$('#password-output').focusin( function(e){
+  $('#password-input').focus();
+});
 
-    </script>
+</script>
   </body>
 </html>
