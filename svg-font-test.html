@@ -118,8 +118,16 @@ var passwordData = [];
 function writeBlockStr(str, jqId) {
   // use velosity.js for animation
 
-  $(jqId)
-    .append($('<svg width="1000" height="1000"><use x="0" y="0" width="100" height="100" xlink:href="#blue-A"/></svg>'));
+  nameData = str.split('');
+
+  $(jqId).empty();
+
+  $.each(nameData, function(i,v){
+    $(jqId)
+        .append($('<svg width="80" height="100"><use x="0" y="0" width="80" height="100" xlink:href="#blue-A"/></svg>'));
+
+  });
+
     // .append($('<svg width="70" height="100"><rect x="0" y="0" width="70" height="100"/></svg>'));
     // .append($('<svg width="70" height="100"><use x="10" y="10" width="20" height="20" xlink:href="#A"/></svg>'));
 
