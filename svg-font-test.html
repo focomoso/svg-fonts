@@ -1,17 +1,25 @@
 <html>
   <head>
     <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js'></script>
+    <script src="lib/svg4everybody.js"></script>
+
+    <script src="js/block-src.js"></script>
     <script src="js/block-font.js"></script>
 
 
     <style type="text/css">
 
+      #symbol-svg {
+        visibility:hidden;
+        width: 0;
+        height: 0;
+      }
+
       #name-output, #password-output {
-        background-color: #d8da3d;
+        background-color: #999999;
         height: 120;
         box-sizing: border-box;
-        outline: none;
+        border: solid #999999 1px;
         padding: 10;
       }
       #name-output:hover, #password-output:hover {
@@ -46,71 +54,76 @@
     </div>
 <br>
 
+<!-- to be injected by blockFont -->
+<svg id="symbol-svg">
 
-<svg id="alphabet" width="600" height="120">
-
-  <!-- blue block -->
-  <symbol id="sym01" viewBox="0 0 100 100" overflow="visible">
+<!-- white block -->
+  <symbol id="block-white" viewBox="0 0 100 100" overflow="visible">
 
     <polygon
       vector-effect="non-scaling-stroke"
       stroke-linejoin="round"
       points="0,25 50,0 100,25 50,50 "
-      style="fill:#0000ff; stroke:black; stroke-width:1"
+      style="fill:#fff; stroke:black; stroke-width:1"
     />
     <polygon
       vector-effect="non-scaling-stroke"
       stroke-linejoin="round"
       points="0,25 50,50 50,100 0,75 "
-      style="fill:#0000cc; stroke:black; stroke-width:1"
+      style="fill:#ccc; stroke:black; stroke-width:1"
     />
     <polygon
       vector-effect="non-scaling-stroke"
       stroke-linejoin="round"
       points="50,50 100,25 100,75 50,100 "
-      style="fill:#000099; stroke:black; stroke-width:1"
+      style="fill:#999; stroke:black; stroke-width:1"
     />
 
   </symbol>
 
-<!-- background -->
-  <rect x='0' y='0' width='600' height='120' style="fill:gray; stroke:black; stroke-width:1" />
+  <symbol id="white-A" viewBox="0 0 60 95" overflow="visible">
 
-  <!-- 'A' -->
-  <symbol id="blue-A" viewBox="0 0 60 95" overflow="visible">
+    <use x=" 0" y="55" width="20" height="20" xlink:href="#block-white"/>
+    <use x="40" y="75" width="20" height="20" xlink:href="#block-white"/>
 
-    <use x=" 0" y="55" width="20" height="20" xlink:href="#sym01"/>
-    <use x="40" y="75" width="20" height="20" xlink:href="#sym01"/>
-
-    <use x=" 0" y="45" width="20" height="20" xlink:href="#sym01"/>
-    <use x="40" y="65" width="20" height="20" xlink:href="#sym01"/>
+    <use x=" 0" y="45" width="20" height="20" xlink:href="#block-white"/>
+    <use x="40" y="65" width="20" height="20" xlink:href="#block-white"/>
 
 
-    <use x=" 0" y="35" width="20" height="20" xlink:href="#sym01"/>
-    <use x="10" y="40" width="20" height="20" xlink:href="#sym01"/>
-    <use x="20" y="45" width="20" height="20" xlink:href="#sym01"/>
-    <use x="30" y="50" width="20" height="20" xlink:href="#sym01"/>
-    <use x="40" y="55" width="20" height="20" xlink:href="#sym01"/>
+    <use x=" 0" y="35" width="20" height="20" xlink:href="#block-white"/>
+    <use x="10" y="40" width="20" height="20" xlink:href="#block-white"/>
+    <use x="20" y="45" width="20" height="20" xlink:href="#block-white"/>
+    <use x="30" y="50" width="20" height="20" xlink:href="#block-white"/>
+    <use x="40" y="55" width="20" height="20" xlink:href="#block-white"/>
 
-    <use x=" 0" y="25" width="20" height="20" xlink:href="#sym01"/>
-    <use x="40" y="45" width="20" height="20" xlink:href="#sym01"/>
+    <use x=" 0" y="25" width="20" height="20" xlink:href="#block-white"/>
+    <use x="40" y="45" width="20" height="20" xlink:href="#block-white"/>
 
-    <use x=" 0" y="15" width="20" height="20" xlink:href="#sym01"/>
-    <use x="40" y="35" width="20" height="20" xlink:href="#sym01"/>
+    <use x=" 0" y="15" width="20" height="20" xlink:href="#block-white"/>
+    <use x="40" y="35" width="20" height="20" xlink:href="#block-white"/>
 
-    <use x=" 0" y=" 5" width="20" height="20" xlink:href="#sym01"/>
-    <use x="40" y="25" width="20" height="20" xlink:href="#sym01"/>
+    <use x=" 0" y=" 5" width="20" height="20" xlink:href="#block-white"/>
+    <use x="40" y="25" width="20" height="20" xlink:href="#block-white"/>
 
-    <use x="10" y=" 0" width="20" height="20" xlink:href="#sym01"/>
-    <use x="20" y=" 5" width="20" height="20" xlink:href="#sym01"/>
-    <use x="30" y="10" width="20" height="20" xlink:href="#sym01"/>
+    <use x="10" y=" 0" width="20" height="20" xlink:href="#block-white"/>
+    <use x="20" y=" 5" width="20" height="20" xlink:href="#block-white"/>
+    <use x="30" y="10" width="20" height="20" xlink:href="#block-white"/>
   </symbol>
+
 </svg>
 
-<svg width="1000" height="1000"><use x="0" y="0" width="100" height="100" xlink:href="#blue-A"/></svg>
+<br>
+  <svg width="600" height="120">
+
+    <use x="0" y="0" width="100" height="100" xlink:href="#white-A"/>
+
+  </svg>
+<br>
 
 
 <script>
+
+var blockFont = BlockFont.getInstance();
 
 var nameData = [];
 var passwordData = [];
@@ -119,34 +132,15 @@ function writeBlockStr(str, jqId) {
   // use velosity.js for animation
 
   nameData = str.split('');
+  // $('#face-z').attr('fill', "red");
 
   $(jqId).empty();
 
   $.each(nameData, function(i,v){
     $(jqId)
-        .append($('<svg width="80" height="100"><use x="0" y="0" width="80" height="100" xlink:href="#blue-A"/></svg>'));
+        .append($(blockFont.writeGlyph(v,'#ff0000')));
 
   });
-
-    // .append($('<svg width="70" height="100"><rect x="0" y="0" width="70" height="100"/></svg>'));
-    // .append($('<svg width="70" height="100"><use x="10" y="10" width="20" height="20" xlink:href="#A"/></svg>'));
-
-  // nameData = str.split('');
-
-  // d3.select(domId)
-  //     .html('')
-  //     .selectAll('div')
-  //     .data(nameData)
-  //   .enter()
-  //     .append('svg')
-  //       .attr('width', 70)
-  //       .attr('height', 100)
-  //     .append('rect')
-  //       .attr('x', 0)
-  //       .attr('y', 0)
-  //       .attr('width', 60)
-  //       .attr('height', 100)
-  // ;
 }
 
 $('#name-input').bind('input', function(e) {

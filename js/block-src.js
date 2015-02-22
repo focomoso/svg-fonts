@@ -1,5 +1,6 @@
 /**
  * Static class holdig the source arrays for the Block Font
+ * taken from: http://www.fontriver.com/i/fonts/grand9k_pixel/grand9k_pixel_specimen.jpg
  * @type {BlockSrc}
  */
 var BlockSrc = {
