@@ -171,12 +171,13 @@ var BlockFont = (function () {
         var strData = str.split('');
 
         $.each(strData, function(i,v){
-          glyph = instance.writeGlyph(v, color, charHeight, charDir, width, 0);
+          glyph = instance.writeGlyph(v, color, charHeight, charDir, width, height);
           bodyStr += glyph.svgStr;
           width += glyph.width + padding;
+          height += glyph.width/2 + padding / 2;
         });
 
-        svgStr = '<svg width="' + width + '" height="120" overflow="visible">'
+        svgStr = '<svg width="' + width + '" height="' + height + '" overflow="visible">'
             + bodyStr
             + "</svg>";
 
