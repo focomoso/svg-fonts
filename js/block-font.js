@@ -9,6 +9,50 @@ var BlockFont = (function () {
 
   function init() {
 
+    // private methods and variables
+
+    /**
+     * Takes a hex string and reduces it by ration
+     * @param  {String} hStr  A two digit hex string ('00' to 'ff')
+     * @param  {Number} ratio The amount to dim the string
+     * @return {String}       The new, dimmed string
+     */
+    function dimStr(hStr, ratio) {
+      var newStr = Math.round(parseInt(hStr, 16)*ratio).toString(16);
+      return newStr.length == 1 ? newStr = '0' + newStr : newStr;
+    }
+
+
+    /**
+     * Takes a hex color and shades it slightl
+     * @param  {String} color Hex representation of a color
+     * @return {String}       Hex representation of a darker color
+     */
+    function midShade(color) {
+
+
+      var ratio = 0.7;
+
+      return    dimStr(color.charAt(0) + color.charAt(1), ratio)
+              + dimStr(color.charAt(2) + color.charAt(3), ratio)
+              + dimStr(color.charAt(4) + color.charAt(5), ratio);
+    }
+
+    /**
+     * Takes a hex color and shades it more
+     * @param  {String} color Hex representation of a color
+     * @return {String}       Hex representation of a darker color
+     */
+    function lowShade(color) {
+
+      var ratio = 0.4;
+
+      return    dimStr(color.charAt(0) + color.charAt(1), ratio)
+              + dimStr(color.charAt(2) + color.charAt(3), ratio)
+              + dimStr(color.charAt(4) + color.charAt(5), ratio);
+    }
+
+
     /**
      * Draws a block into the given svg
      * @param  {SVG Dom Object} svg   The svg to draw into
@@ -20,7 +64,6 @@ var BlockFont = (function () {
      */
     function drawBlock( color, x, y, w, h ) {
       var str = '';
-      // var str += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#' + color + '"/>';
 
       str += '<polygon ';
       str += 'vector-effect="non-scaling-stroke" ';
@@ -42,7 +85,7 @@ var BlockFont = (function () {
                 + (x+w*0.5 ) + ',' + (y+h*0.5 ) + ' '
                 + (x+w*0.5 ) + ',' + (y+h*1.0 ) + ' '
                 + (x+w*0.0 ) + ',' + (y+h*0.75) + ' " ';
-      str += 'fill="#' + color + '" ';
+      str += 'fill="#' + midShade(color) + '" ';
       str += 'style="stroke:black; stroke-width:1" ';
       str += '/>';
 
@@ -54,15 +97,12 @@ var BlockFont = (function () {
                 + (x+w*1.0 ) + ',' + (y+h*0.25) + ' '
                 + (x+w*1.0 ) + ',' + (y+h*0.75) + ' '
                 + (x+w*0.5 ) + ',' + (y+h*1.0 ) + ' " ';
-      str += 'fill="#' + color + '" ';
+      str += 'fill="#' + lowShade(color) + '" ';
       str += 'style="stroke:black; stroke-width:1" ';
       str += '/>';
 
-
-
       return str;
     }
-
 
 
     return {
@@ -83,11 +123,11 @@ var BlockFont = (function () {
         var width = dim * 5; // get the multiplier from length of arrays in block-src
         var str = '';
 
-        str += drawBlock( color, x      , y    , dim, dim);
-        str += drawBlock( color, x+dim  , y+dim, dim, dim);
-        str += drawBlock( color, x+dim*2, y    , dim, dim);
-        str += drawBlock( color, x+dim*3, y+dim, dim, dim);
-        str += drawBlock( color, x+dim*4, y    , dim, dim);
+        str += drawBlock( color, x      , y+dim*0.0, dim*2, dim*2);
+        str += drawBlock( color, x+dim  , y+dim*0.5, dim*2, dim*2);
+        str += drawBlock( color, x+dim*2, y+dim*1.0, dim*2, dim*2);
+        str += drawBlock( color, x+dim*3, y+dim*1.5, dim*2, dim*2);
+        str += drawBlock( color, x+dim*4, y+dim*2.0, dim*2, dim*2);
 
         return {
           svgStr: str,
