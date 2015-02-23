@@ -26,13 +26,39 @@ var BlockFont = (function () {
       str += 'vector-effect="non-scaling-stroke" ';
       str += 'stroke-linejoin="round" ';
       str += 'points="'
-                + x + ',' + (y+h*0.25) + ' '
-                + (x+w*0.5) + ',' + y + ' '
-                + (x+w) + ',' + (y+h*0.25) + ' '
-                + (x+w*0.5) + ',' + (y+h*0.5) + ' " ';
+                + (x+w*0.0 ) + ',' + (y+h*0.25) + ' '
+                + (x+w*0.5 ) + ',' + (y+h*0.0 ) + ' '
+                + (x+w*1.0 ) + ',' + (y+h*0.25) + ' '
+                + (x+w*0.5 ) + ',' + (y+h*0.5) + ' " ';
       str += 'fill="#' + color + '" ';
       str += 'style="stroke:black; stroke-width:1" ';
       str += '/>';
+
+      str += '<polygon ';
+      str += 'vector-effect="non-scaling-stroke" ';
+      str += 'stroke-linejoin="round" ';
+      str += 'points="'
+                + (x+w*0.0 ) + ',' + (y+h*0.25) + ' '
+                + (x+w*0.5 ) + ',' + (y+h*0.5 ) + ' '
+                + (x+w*0.5 ) + ',' + (y+h*1.0 ) + ' '
+                + (x+w*0.0 ) + ',' + (y+h*0.75) + ' " ';
+      str += 'fill="#' + color + '" ';
+      str += 'style="stroke:black; stroke-width:1" ';
+      str += '/>';
+
+      str += '<polygon ';
+      str += 'vector-effect="non-scaling-stroke" ';
+      str += 'stroke-linejoin="round" ';
+      str += 'points="'
+                + (x+w*0.5 ) + ',' + (y+h*0.5 ) + ' '
+                + (x+w*1.0 ) + ',' + (y+h*0.25) + ' '
+                + (x+w*1.0 ) + ',' + (y+h*0.75) + ' '
+                + (x+w*0.5 ) + ',' + (y+h*1.0 ) + ' " ';
+      str += 'fill="#' + color + '" ';
+      str += 'style="stroke:black; stroke-width:1" ';
+      str += '/>';
+
+
 
       return str;
     }
