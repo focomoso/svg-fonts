@@ -37,22 +37,31 @@ var BlockFont = (function () {
        * @param  {String}     dir     The orientation of the character 'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
        * @return {String}             An svg of the character
        */
-      writeGlyph: function(glyph, color, dir) {
-        var str = '<svg width="80" height="100">'
-              + '<rect x="0" y="0" width="80" height="100">'
-              + '</svg>';
+      writeGlyph: function(glyph, color, dir, x, y) {
+        var str = '<rect x="' + x + '" y="' + y + '" width="80" height="100" fill="red"/>';
         return str;
       },
 
       /**
        * Returns an svg of the given string with the given color
-       * @param  {String} str   The string to write
-       * @param  {String} color Hex string for the highlight color
-       * @param  {String} dir   The orientation of the character 'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
-       * @return {String}       An svg of the scring
+       * @param  {String} str       The string to write
+       * @param  {String} color     Hex string for the highlight color
+       * @param  {String} charDir   The orientation of the character 'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
+       * @param  {String} stringDir The direction of the entire string 'x'= \; 'y'= /; 'z'= |; 'h'= -;
+       * note: charDir y will usually want to go in stringDir x
+       * @return {String}           An svg of the scring
        */
-      writeString: function(str, color, dir) {
-        return '';
+      writeString: function(str, color, charDir, stringDir) {
+        svgStr = '<svg width="600" height="120">';
+
+        var strData = str.split('');
+
+        $.each(strData, function(i,v){
+          svgStr += instance.writeGlyph(v, color, charDir, i*100, 0);
+        });
+        svgStr += "</svg>";
+
+        return svgStr;
       }
     };
   };

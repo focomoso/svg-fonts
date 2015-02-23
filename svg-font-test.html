@@ -68,16 +68,8 @@ var blockFont = BlockFont.getInstance();
 
 function writeBlockStr(str, jqId) {
   // use velosity.js for animation
-
-  var strData = str.split('');
-
   $(jqId).empty();
-
-  $.each(strData, function(i,v){
-    $(jqId)
-      .append('<div class="glyph">' + blockFont.writeGlyph('A','ff0000', 'y') + '</div>');
-
-  });
+  $(jqId).append(blockFont.writeString(str,'ff0000', 'y', 'h'));
 }
 
 $('#name-input').bind('input', function(e) {
