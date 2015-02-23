@@ -54,13 +54,13 @@ var BlockFont = (function () {
 
 
     /**
-     * Draws a block into the given svg
-     * @param  {SVG Dom Object} svg   The svg to draw into
+     * Returns
+     * @param  {String} color Hex color
      * @param  {Number} x     X coordinates
      * @param  {Number} y     Y coordinates
      * @param  {Number} w     Width
      * @param  {Number} h     Height
-     * @param  {String} color Hex color
+     * @return {String}       SVG polygons that draws the block
      */
     function drawBlock( color, x, y, w, h ) {
       var str = '';
@@ -109,25 +109,38 @@ var BlockFont = (function () {
 
       // public methods and variables
 
+
       /**
-       * Returns an svg of the given character with the given color
-       * and direction.
-       *
-       * @param  {Char}       glyph   The character to be drawn
-       * @param  {HexString}  color   Hex string for the highlight color to draw
-       * @param  {String}     dir     The orientation of the character 'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
-       * @return {Object}             An svg of the character
+       * [writeGlyph description]
+       * @param  {Char}       glyph      The character to render
+       * @param  {HexString}  color      Hex string for the highlight color
+       * @param  {Number}     charHeight Hight of the character in px
+       *                                 Note: this is the hight of the vertical axis of the char, not the size of the svg
+       *                                       which may be greater because of the perspective.
+       * @param  {String}     charDir    The orientation of the character:
+       *                                     'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
+       * @param  {Number}     x          X position
+       * @param  {Number}     y          y position
+       * @return {Object}                svgStr: An svg of the glyph; width: the total width of the glyph
        */
       writeGlyph: function( glyph, color, charHeight, charDir, x, y ) {
         var dim = charHeight/9;
-        var width = dim * 5; // get the multiplier from length of arrays in block-src
+        var width; // get the multiplier from length of arrays in block-src
         var str = '';
 
-        str += drawBlock( color, x      , y+dim*0.0, dim*2, dim*2);
-        str += drawBlock( color, x+dim  , y+dim*0.5, dim*2, dim*2);
-        str += drawBlock( color, x+dim*2, y+dim*1.0, dim*2, dim*2);
-        str += drawBlock( color, x+dim*3, y+dim*1.5, dim*2, dim*2);
-        str += drawBlock( color, x+dim*4, y+dim*2.0, dim*2, dim*2);
+        var blockSrc = BlockSrc[glyph];
+
+        if ( typeof(blockSrc) === 'undefined' )
+          blockSrc = BlockSrc['missing'];
+
+
+        for (var by = blockSrc.length - 1; by >= 0; by--) {
+          width = dim * blockSrc[by].length;
+          for (var bx = 0; bx < blockSrc[by].length; bx++) {
+            if (blockSrc[by][bx])
+              str += drawBlock( color, x+dim*bx, y+dim*bx/2+dim*by, dim*2, dim*2);
+          }
+        }
 
         return {
           svgStr: str,
@@ -140,10 +153,10 @@ var BlockFont = (function () {
        * @param  {String} selector    The jQuery selector to write the string into
        * @param  {String} str         The string to write
        * @param  {String} color       Hex color of the highlight
-       * @param  {String} charDir     The orientation of the character 'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
-       * @param  {String} stringDir   The direction of the entire string 'x'= \; 'y'= /; 'z'= |; 'h'= -;
-       *                                note: charDir y will usually want to go in stringDir x
        * @param  {Number} charHeight  The preffered height of each character
+       * @param  {String} charDir     The orientation of the character 'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
+       * @param  {String} stringDir   (ignored) The direction of the entire string 'x'= \; 'y'= /; 'z'= |; 'h'= -;
+       *                              Note: charDir y will usually want to go in stringDir x
        * @return {Object}             The svg string, width and height of the final svg.
        */
       writeString: function( selector, str, color, charHeight, charDir, stringDir ) {
