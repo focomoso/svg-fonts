@@ -9,16 +9,12 @@
 
     <style type="text/css">
 
-      .glyph {
-        padding: 10;
-        display: inline-block;
-      }
-
       #name-output, #password-output {
         background-color: #999999;
         height: 120;
         box-sizing: border-box;
         border: solid #999999 1px;
+        padding: 10;
       }
       #name-output:hover, #password-output:hover {
         outline: none;
@@ -45,7 +41,7 @@
       Password:<br>
       <div id='password-output' tabindex='2'>
       </div>
-      <button>Click</button>
+
   <!-- hidden form -->
       <div id='hidden-div'>
       <form>
@@ -63,21 +59,12 @@
 // get instance for blockFont (a singleton)
 var blockFont = BlockFont.getInstance();
 
-// var nameData = [];
-// var passwordData = [];
-
-function writeBlockStr(str, jqId) {
-  // use velosity.js for animation
-  $(jqId).empty();
-  $(jqId).append(blockFont.writeString(str,'ff0000', 'y', 'h'));
-}
-
 $('#name-input').bind('input', function(e) {
-  writeBlockStr(e.target.value, '#name-output');
+  blockFont.writeString('#name-output', e.target.value,'ffffff', 100, 'y', 'h')
 });
 
 $('#password-input').bind('input', function(e) {
-  writeBlockStr(e.target.value, '#password-output');
+  blockFont.writeString('#password-output', e.target.value,'ff0000', 100, 'y', 'h')
 });
 
 
