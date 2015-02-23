@@ -37,65 +37,6 @@
       }
     </style>
 
-    <svg id="symbol-svg">
-
-      <!-- white block -->
-      <symbol id="block-ffffff" viewBox="0 0 100 100" overflow="visible">
-
-        <polygon id="block-ffffff-face-z"
-          vector-effect="non-scaling-stroke"
-          stroke-linejoin="round"
-          points="0,25 50,0 100,25 50,50 "
-          fill="#fff"
-          style="stroke:black; stroke-width:1"
-        />
-        <polygon id="block-ffffff-face-y"
-          vector-effect="non-scaling-stroke"
-          stroke-linejoin="round"
-          points="0,25 50,50 50,100 0,75 "
-          fill="#ccc"
-          style="stroke:black; stroke-width:1"
-        />
-        <polygon id="block-ffffff-face-x"
-          vector-effect="non-scaling-stroke"
-          stroke-linejoin="round"
-          points="50,50 100,25 100,75 50,100 "
-          fill="#999"
-          style="stroke:black; stroke-width:1"
-        />
-
-      </symbol>
-      <!-- white glyph A -->
-      <symbol id="ffffff-y-A" viewBox="0 0 60 95" overflow="visible">
-
-        <use x=" 0" y="55" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="40" y="75" width="20" height="20" xlink:href="#block-ffffff"/>
-
-        <use x=" 0" y="45" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="40" y="65" width="20" height="20" xlink:href="#block-ffffff"/>
-
-
-        <use x=" 0" y="35" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="10" y="40" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="20" y="45" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="30" y="50" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="40" y="55" width="20" height="20" xlink:href="#block-ffffff"/>
-
-        <use x=" 0" y="25" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="40" y="45" width="20" height="20" xlink:href="#block-ffffff"/>
-
-        <use x=" 0" y="15" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="40" y="35" width="20" height="20" xlink:href="#block-ffffff"/>
-
-        <use x=" 0" y=" 5" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="40" y="25" width="20" height="20" xlink:href="#block-ffffff"/>
-
-        <use x="10" y=" 0" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="20" y=" 5" width="20" height="20" xlink:href="#block-ffffff"/>
-        <use x="30" y="10" width="20" height="20" xlink:href="#block-ffffff"/>
-      </symbol>
-    </svg>
-
   </head>
 
   <body>
@@ -118,17 +59,6 @@
 <br>
 
 
-
-<br>
-  <svg width="600" height="120">
-
-    <use x="0" y="0" width="100" height="100" xlink:href="#ffffff-y-A"/>
-    <use x="100" y="0" width="100" height="100" xlink:href="#ff0000-y-A"/>
-
-  </svg>
-<br>
-
-
 <script>
 
 
@@ -147,8 +77,7 @@ function writeBlockStr(str, jqId) {
 
   $.each(strData, function(i,v){
     $(jqId)
-        .append(blockFont.writeGlyph('A','ff0000'));
-        // .append(blockFont.writeGlyph('A','ffffff'));
+        .append(blockFont.writeGlyph('A','ff0000', 'y'));
 
   });
 }

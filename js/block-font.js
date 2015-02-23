@@ -9,83 +9,16 @@ var BlockFont = (function () {
 
   function init() {
 
-    // test whether the symbol-svg exists on the page
-    if ($('#symbol-svg').length == 0) {
-      // if not, inject it
-      $('body').prepend('<svg id="symbol-svg"></svg>');
-    }
-
-    // Private methods and variables
-
     /**
-     * Injects the block for the given color into the #symbol-svg
-     * @param  {HexString} color Color to inject
+     * Draws a block into the given svg
+     * @param  {SVG Dom Object} svg   The svg to draw into
+     * @param  {Number} x     X coordinates
+     * @param  {Number} y     Y coordinates
+     * @param  {Number} w     Width
+     * @param  {Number} h     Height
+     * @param  {String} color Hex color
      */
-    function injectBlock(color) {
-      var str = '';
-
-      str += '<symbol id="block-' + color + '" viewBox="0 0 100 100" overflow="visible">';
-
-        str += '<polygon id="block-' + color + '-face-z"';
-          str += 'vector-effect="non-scaling-stroke"';
-          str += 'stroke-linejoin="round"';
-          str += 'points="0,25 50,0 100,25 50,50 "';
-          str += 'fill="#fff"';
-          str += 'style="stroke:black; stroke-width:1"';
-        str += '/>';
-        str += '<polygon id="block-' + color + '-face-y"';
-          str += 'vector-effect="non-scaling-stroke"';
-          str += 'stroke-linejoin="round"';
-          str += 'points="0,25 50,50 50,100 0,75 "';
-          str += 'fill="#ccc"';
-          str += 'style="stroke:black; stroke-width:1"';
-        str += '/>';
-        str += '<polygon id="block-' + color + '-face-x"';
-          str += 'vector-effect="non-scaling-stroke"';
-          str += 'stroke-linejoin="round"';
-          str += 'points="50,50 100,25 100,75 50,100 "';
-          str += 'fill="#999"';
-          str += 'style="stroke:black; stroke-width:1"';
-        str += '/>';
-
-      str += '</symbol>';
-
-      $('#symbol-svg').prepend(str);
-    }
-
-    /**
-     * Injects the given glyph with the given color into the #symbol-svg
-     * @param  {Char}       glyph Character to inject
-     * @param  {HexString}  color Color to inject
-     */
-    function injectGlyph(glyph, color) {
-        if ($('#block-' + color).length == 0) {
-          injectBlock(color);
-        }
-        var str = '';
-
-        str += '<symbol id="' + color + '-y-A" viewBox="0 0 60 95" overflow="visible">';
-        str += '<use x=" 0" y="55" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="40" y="75" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x=" 0" y="45" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="40" y="65" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x=" 0" y="35" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="10" y="40" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="20" y="45" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="30" y="50" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="40" y="55" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x=" 0" y="25" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="40" y="45" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x=" 0" y="15" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="40" y="35" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x=" 0" y=" 5" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="40" y="25" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="10" y=" 0" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="20" y=" 5" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '<use x="30" y="10" width="20" height="20" xlink:href="#block-' + color + '"/>';
-        str += '</symbol>';
-
-     $('#symbol-svg').append(str);
+    function drawBlock(svg, x, y, w, h, color) {
 
     }
 
@@ -96,23 +29,19 @@ var BlockFont = (function () {
       // public methods and variables
 
       /**
-       * Injects symbols into the #symbol-svg if they don't exist and
-       * returns an svg of the given character with the given color
-       * using those symbols.
+       * Returns an svg of the given character with the given color
+       * and direction.
        *
-       * @param  {Char}         glyph   The character to be drawn
-       * @param  {HexString}    color   Hex string for the highlight color to draw
-       * @return {String}               An svg of the character
+       * @param  {Char}       glyph   The character to be drawn
+       * @param  {HexString}  color   Hex string for the highlight color to draw
+       * @param  {String}     dir     The orientation of the character 'y'=/ 'x'=\ 'z'=| (z up)
+       * @return {String}             An svg of the character
        */
-      writeGlyph: function(glyph, color) {
-
-        if ($('#' + color + '-' + glyph).length == 0) {
-          injectGlyph(glyph, color);
-        }
-
-        return '<svg width="80" height="100"><use x="0" y="0" width="80" height="100" xlink:href="#'
-            + color + '-y-'
-            + glyph + '"/></svg>';
+      writeGlyph: function(glyph, color, dir) {
+        var str = '<svg width="80" height="100">'
+              + '<rect x="0" y="0" width="80" height="100">'
+              + '</svg>';
+        return str;
       },
 
       /**
