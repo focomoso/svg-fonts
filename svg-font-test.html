@@ -11,7 +11,8 @@
 
       #name-output, #password-output {
         background-color: #999999;
-        height: 140;
+        height: 20;
+        width: 20;
         box-sizing: border-box;
         border: solid #999999 1px;
         padding: 10;
@@ -35,10 +36,10 @@
 
   <body>
     <div>
-      Name:<br>
+      <div id='name-label'></div><br>
       <div id='name-output' tabindex='1'>
       </div>
-      Password:<br>
+      <div id='password-label'></div><br>
       <div id='password-output' tabindex='2'>
       </div>
 
@@ -58,6 +59,11 @@
 
 // get instance for blockFont (a singleton)
 var blockFont = BlockFont.getInstance();
+
+$( document ).ready( function() {
+  blockFont.writeString('#name-label', 'Name:','00ff00', 40, 'y', 'h')
+  blockFont.writeString('#password-label', 'Password:','00ffff', 40, 'y', 'h')
+});
 
 $('#name-input').bind('input', function(e) {
   blockFont.writeString('#name-output', e.target.value,'ffffff', 90, 'y', 'h')
