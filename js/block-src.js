@@ -3,7 +3,7 @@
  * taken from: http://www.fontriver.com/i/fonts/grand9k_pixel/grand9k_pixel_specimen.jpg
  * @type {BlockSrc}
  */
-var BlockSrc = {
+var BlockSrcData = {
   "A":  [
           [0,1,1,1,0],
           [1,0,0,0,1],
@@ -238,4 +238,8 @@ var BlockSrc = {
           [1,0,0,0,1],
           [1,1,1,1,1]
         ],
+};
+
+var BlockSrcScrings = {
+
 };
