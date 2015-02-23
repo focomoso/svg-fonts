@@ -34,7 +34,7 @@ var BlockFont = (function () {
        *
        * @param  {Char}       glyph   The character to be drawn
        * @param  {HexString}  color   Hex string for the highlight color to draw
-       * @param  {String}     dir     The orientation of the character 'y'=/ 'x'=\ 'z'=| (z up)
+       * @param  {String}     dir     The orientation of the character 'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
        * @return {String}             An svg of the character
        */
       writeGlyph: function(glyph, color, dir) {
@@ -48,9 +48,10 @@ var BlockFont = (function () {
        * Returns an svg of the given string with the given color
        * @param  {String} str   The string to write
        * @param  {String} color Hex string for the highlight color
+       * @param  {String} dir   The orientation of the character 'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
        * @return {String}       An svg of the scring
        */
-      writeString: function(str, color) {
+      writeString: function(str, color, dir) {
         return '';
       }
     };
