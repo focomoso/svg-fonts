@@ -19,7 +19,21 @@ var BlockFont = (function () {
      * @param  {String} color Hex color
      */
     function drawBlock( color, x, y, w, h ) {
-      var str = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#' + color + '"/>';
+      var str = '';
+      // var str += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#' + color + '"/>';
+
+      str += '<polygon ';
+      str += 'vector-effect="non-scaling-stroke" ';
+      str += 'stroke-linejoin="round" ';
+      str += 'points="'
+                + x + ',' + (y+h*0.25) + ' '
+                + (x+w*0.5) + ',' + y + ' '
+                + (x+w) + ',' + (y+h*0.25) + ' '
+                + (x+w*0.5) + ',' + (y+h*0.5) + ' " ';
+      str += 'fill="#' + color + '" ';
+      str += 'style="stroke:black; stroke-width:1" ';
+      str += '/>';
+
       return str;
     }
 
