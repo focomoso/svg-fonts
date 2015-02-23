@@ -18,8 +18,9 @@ var BlockFont = (function () {
      * @param  {Number} h     Height
      * @param  {String} color Hex color
      */
-    function drawBlock(svg, x, y, w, h, color) {
-
+    function drawBlock( color, x, y, w, h ) {
+      var str = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#' + color + '"/>';
+      return str;
     }
 
 
@@ -37,9 +38,17 @@ var BlockFont = (function () {
        * @param  {String}     dir     The orientation of the character 'x'=\ 'y'=/ 'zx'= facing |, top \ zy'= facing |, top /
        * @return {Object}             An svg of the character
        */
-      writeGlyph: function(glyph, color, dir, x, y) {
-        var width = 80;
-        var str = '<rect x="' + x + '" y="' + y + '" width="' + width + '" height="100" fill="#' + color + '"/>';
+      writeGlyph: function( glyph, color, charHeight, charDir, x, y ) {
+        var dim = charHeight/9;
+        var width = dim * 5; // get the multiplier from length of arrays in block-src
+        var str = '';
+
+        str += drawBlock( color, x      , y    , dim, dim);
+        str += drawBlock( color, x+dim  , y+dim, dim, dim);
+        str += drawBlock( color, x+dim*2, y    , dim, dim);
+        str += drawBlock( color, x+dim*3, y+dim, dim, dim);
+        str += drawBlock( color, x+dim*4, y    , dim, dim);
+
         return {
           svgStr: str,
           width: width
@@ -57,20 +66,21 @@ var BlockFont = (function () {
        * @param  {Number} charHeight  The preffered height of each character
        * @return {Object}             The svg string, width and height of the final svg.
        */
-      writeString: function(selector, str, color, charHeight, charDir, stringDir) {
+      writeString: function( selector, str, color, charHeight, charDir, stringDir ) {
 
         var x = y = 0;
         var width = height = 0;
         var bodyStr = '';
+        var padding = charHeight / 9;
 
         $(selector).empty();
 
         var strData = str.split('');
 
         $.each(strData, function(i,v){
-          glyph = instance.writeGlyph(v, color, charDir, i*100, 0);
+          glyph = instance.writeGlyph(v, color, charHeight, charDir, width, 0);
           bodyStr += glyph.svgStr;
-          width += glyph.width;
+          width += glyph.width + padding;
         });
 
         svgStr = '<svg width="' + width + '" height="120" overflow="visible">'
