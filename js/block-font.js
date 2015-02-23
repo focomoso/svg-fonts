@@ -164,7 +164,7 @@ var BlockFont = (function () {
         var x = y = 0;
         var width = height = 0;
         var bodyStr = '';
-        var padding = charHeight / 9;
+        var padding = charHeight / 9 * 2;
 
         $(selector).empty();
 
