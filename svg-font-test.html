@@ -48,27 +48,20 @@
   </head>
 
   <body>
-    <div>
-      <br><br><br><br><br>
-      <div id="x-y"></div>
-      <div id="y-x"></div>
-
-      <div id="x-h"></div>
-      <div id="x-x"></div>
-      <div id="y-h"></div>
-      <div id="y-y"></div>
-    </div>
 
 
-    <!--
+
     <div>
       <div id='name-label'></div><br>
       <div id='name-output' tabindex='1'>
       </div>
+
+      <div style="height: 400px"></div>
+
       <div id='password-label'></div><br>
       <div id='password-output' tabindex='2'>
       </div>
- -->
+
   <!-- hidden form -->
       <div id='hidden-div'>
       <form>
@@ -88,14 +81,14 @@ var blockFont = BlockFont.getInstance();
 
 $( document ).ready( function() {
 
-  blockFont.writeString('#x-y', '_x-y','00ff00', 120, 'x', 'y')
-  blockFont.writeString('#y-x', '_y-x','0000ff', 120, 'y', 'x')
+  // blockFont.writeString('#x-y', '_x-y','00ff00', 120, 'x', 'y')
+  // blockFont.writeString('#y-x', '_y-x','0000ff', 120, 'y', 'x')
 
-  blockFont.writeString('#y-y', '_y-y','ff0000', 120, 'y', 'y')
-  blockFont.writeString('#x-x', '_x-x','ffff00', 120, 'x', 'x')
+  // blockFont.writeString('#y-y', '_y-y','ff0000', 120, 'y', 'y')
+  // blockFont.writeString('#x-x', '_x-x','ffff00', 120, 'x', 'x')
 
-  blockFont.writeString('#x-h', '_IAMg','00ffff', 120, 'x', 'h')
-  blockFont.writeString('#y-h', '_IAMg','ff00ff', 120, 'y', 'h')
+  // blockFont.writeString('#x-h', '_IAMg','00ffff', 120, 'x', 'h')
+  // blockFont.writeString('#y-h', '_IAMg','ff00ff', 120, 'y', 'h')
 
   // blockFont.writeString('#x-h', 'Red - x-h','ff0000', 60, 'x', 'h')
   // blockFont.writeString('#x-x', 'Yellow - x-x','ffff00', 60, 'x', 'x')
@@ -105,16 +98,16 @@ $( document ).ready( function() {
   // blockFont.writeString('#y-y', 'Magenta - y-y','ff00ff', 60, 'y', 'y')
 
 
-  // blockFont.writeString('#name-label', 'Name:','00ff00', 45, 'y', 'h')
-  // blockFont.writeString('#password-label', 'Password:','00ffff', 45, 'y', 'h')
+  blockFont.writeString('#name-label', 'Name:','00ff00', 45, 'y', 'x')
+  blockFont.writeString('#password-label', 'Password:','00ffff', 45, 'x', 'y')
 });
 
 $('#name-input').bind('input', function(e) {
-  blockFont.writeString('#name-output', e.target.value,'ffffff', 90, 'y', 'h')
+  blockFont.writeString('#name-output', e.target.value,'ffffff', 90, 'y', 'x')
 });
 
 $('#password-input').bind('input', function(e) {
-  blockFont.writeString('#password-output', e.target.value,'ff0000', 90, 'y', 'h')
+  blockFont.writeString('#password-output', e.target.value,'ff0000', 90, 'x', 'y')
 });
 
 
