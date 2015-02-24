@@ -74,7 +74,7 @@ var BlockFont = (function () {
                 + (x+w*1.0 ) + ',' + (y+h*0.25) + ' '
                 + (x+w*0.5 ) + ',' + (y+h*0.5) + ' " ';
       str += 'fill="#' + color + '" ';
-      str += 'style="stroke:black; stroke-width:1" ';
+      str += 'style="stroke:black; stroke-width:0.5" ';
       str += '/>';
 
       str += '<polygon ';
@@ -86,7 +86,7 @@ var BlockFont = (function () {
                 + (x+w*0.5 ) + ',' + (y+h*1.0 ) + ' '
                 + (x+w*0.0 ) + ',' + (y+h*0.75) + ' " ';
       str += 'fill="#' + midShade(color) + '" ';
-      str += 'style="stroke:black; stroke-width:1" ';
+      str += 'style="stroke:black; stroke-width:0.5" ';
       str += '/>';
 
       str += '<polygon ';
@@ -98,7 +98,7 @@ var BlockFont = (function () {
                 + (x+w*1.0 ) + ',' + (y+h*0.75) + ' '
                 + (x+w*0.5 ) + ',' + (y+h*1.0 ) + ' " ';
       str += 'fill="#' + lowShade(color) + '" ';
-      str += 'style="stroke:black; stroke-width:1" ';
+      str += 'style="stroke:black; stroke-width:0.5" ';
       str += '/>';
 
       return str;
