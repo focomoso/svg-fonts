@@ -135,14 +135,22 @@ var BlockFont = (function () {
           blockSrc = BlockSrc['missing'];
 
         width = dim * blockSrc[0].length;
-        height = charHeight + dim * blockSrc[0].length
-
-        for (var by = blockSrc.length - 1; by >= 0; by--) {
+        height = charHeight + dim * blockSrc[0].length/2;
 
 
-          for (var bx = 0; bx < blockSrc[by].length; bx++) {
-            if (blockSrc[by][bx])
-              str += drawBlock( color, x+dim*bx, y+dim*bx/2+dim*by, dim*2, dim*2);
+        if (charDir == 'y') {
+          for (var by = blockSrc.length - 1; by >= 0; by--) {
+            for (var bx = 0; bx < blockSrc[by].length; bx++) {
+              if (blockSrc[by][bx])
+                str += drawBlock( color, x+dim*bx, y+dim*bx/2+dim*by, dim*2, dim*2);
+            }
+          }
+        } else {
+          for (var by = blockSrc.length - 1; by >= 0; by--) {
+            for (var bx = blockSrc[by].length - 1; bx >= 0 ; bx--) {
+              if (blockSrc[by][bx])
+                  str += drawBlock( color, x + dim*bx, y - dim * bx/2 + dim*by, dim*2, dim*2);
+            }
           }
         }
 
