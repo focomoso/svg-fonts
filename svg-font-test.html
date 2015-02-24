@@ -9,7 +9,11 @@
 
     <style type="text/css">
 
-      #Xname-output, #Xpassword-output {
+      div {
+        height:100;
+      }
+
+      #name-output, #password-output {
         background-color: #999999;
         height: 20;
         width: 20;
@@ -17,7 +21,8 @@
         border: solid #999999 1px;
         padding: 10;
       }
-      #Xname-output:hover, #Xpassword-output:hover {
+
+      #name-output:hover, #password-output:hover {
         outline: none;
         box-sizing: border-box;
         border: solid red 1px;
@@ -28,24 +33,10 @@
         height: 0;
         overflow: hidden;
       }
+
       #name-input {
       }
-      #name-output, #password-output {
-        width: 0;
-        height: 0;
-        border: 150px solid transparent;
-        border-bottom: 75px solid #999999;
-        position: relative;
-        top: -50px;
-      }
-      #name-output:after, #password-output:after {
-        content: '';
-        position: absolute;
-        left: -150px; top: 75px;
-        width: 0;
-        height: 0;
-        border: 150px solid transparent;
-        border-top: 70px solid #999999;
+
       }
     </style>
 
@@ -60,6 +51,9 @@
       <div id="y-x"></div>
       <div id="y-y"></div>
     </div>
+
+
+    <!--
     <div>
       <div id='name-label'></div><br>
       <div id='name-output' tabindex='1'>
@@ -67,7 +61,7 @@
       <div id='password-label'></div><br>
       <div id='password-output' tabindex='2'>
       </div>
-
+ -->
   <!-- hidden form -->
       <div id='hidden-div'>
       <form>
@@ -87,12 +81,12 @@ var blockFont = BlockFont.getInstance();
 
 $( document ).ready( function() {
 
-  blockFont.writeString('#x-h', 'Text - x-h','00ff00', 45, 'x', 'h')
-  blockFont.writeString('#x-x', 'Text - x-x','00ff00', 45, 'x', 'x')
-  blockFont.writeString('#x-y', 'Text - x-y','00ff00', 45, 'x', 'y')
-  blockFont.writeString('#y-h', 'Text - y-h','00ff00', 45, 'y', 'h')
-  blockFont.writeString('#y-x', 'Text - y-x','00ff00', 45, 'y', 'x')
-  blockFont.writeString('#y-y', 'Text - y-y','00ff00', 45, 'y', 'y')
+  blockFont.writeString('#x-h', 'Text - x-h','00ff00', 60, 'x', 'h')
+  blockFont.writeString('#x-x', 'Text - x-x','00ff00', 60, 'x', 'x')
+  blockFont.writeString('#x-y', 'Text - x-y','00ff00', 60, 'x', 'y')
+  blockFont.writeString('#y-h', 'Text - y-h','00ff00', 60, 'y', 'h')
+  blockFont.writeString('#y-x', 'Text - y-x','00ff00', 60, 'y', 'x')
+  blockFont.writeString('#y-y', 'Text - y-y','00ff00', 60, 'y', 'y')
 
 
   blockFont.writeString('#name-label', 'Name:','00ff00', 45, 'y', 'h')
