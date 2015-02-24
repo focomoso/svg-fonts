@@ -180,13 +180,16 @@ var BlockFont = (function () {
         var offset = 0;
         var bodyStr = '';
         var padding = charHeight / 9 * 2;
+        var glyph;
 
         $(selector).empty();
 
         var strData = str.split('');
 
-        $.each(strData, function(i,v){
+        // for each char in the string
+        $.each(strData, function( i, v ){
 
+          // write the glyph
           glyph = instance.writeGlyph(v, color, charHeight, charDir, x, y);
 
           bodyStr += glyph.svgStr;
@@ -206,25 +209,26 @@ var BlockFont = (function () {
           }
         });
 
-        width = x;
+        width = Math.round(x-padding/2);
 
         switch (stringDir) {
           case 'h':
-            height = charHeight;
+            height = Math.round(charHeight);
             offset = 0;
             break;
           case 'x':
-            height = y;
-            offset = height + charHeight;
+            height = Math.round(y + charHeight);
+            offset = 0;
             break;
           case 'y':
-            height = y * -1;
+            height = Math.round(-y);
             offset = height - charHeight;
             break;
         }
 
         svgStr = '<svg width="' + width + '" height="' + height + '" overflow="visible">'
-            + '<g transform="translate(0,' + offset + ')">'
+            // + '<g transform="translate(0,' + offset + ')">'
+            + '<g transform="translate(0,' + 0 + ')">'
             + bodyStr
             + '</g>'
             + '</svg>';

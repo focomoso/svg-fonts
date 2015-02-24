@@ -37,18 +37,25 @@
       #name-input {
       }
 
+   /*   #x-y, #y-x, #x-x, #y-y, #x-h, #y-h {
+        position: absolute;
+        top: 300px;
+        left: 100px;
+      }*/
+
     </style>
 
   </head>
 
   <body>
     <div>
+      <br><br><br><br><br>
       <div id="x-y"></div>
+      <div id="y-x"></div>
 
       <div id="x-h"></div>
       <div id="x-x"></div>
       <div id="y-h"></div>
-      <div id="y-x"></div>
       <div id="y-y"></div>
     </div>
 
@@ -81,9 +88,18 @@ var blockFont = BlockFont.getInstance();
 
 $( document ).ready( function() {
 
+  blockFont.writeString('#x-y', '_x-y','00ff00', 120, 'x', 'y')
+  blockFont.writeString('#y-x', '_y-x','0000ff', 120, 'y', 'x')
+
+  blockFont.writeString('#y-y', '_y-y','ff0000', 120, 'y', 'y')
+  blockFont.writeString('#x-x', '_x-x','ffff00', 120, 'x', 'x')
+
+  blockFont.writeString('#x-h', '_IAMg','00ffff', 120, 'x', 'h')
+  blockFont.writeString('#y-h', '_IAMg','ff00ff', 120, 'y', 'h')
+
   // blockFont.writeString('#x-h', 'Red - x-h','ff0000', 60, 'x', 'h')
   // blockFont.writeString('#x-x', 'Yellow - x-x','ffff00', 60, 'x', 'x')
-  blockFont.writeString('#x-y', 'Green - x-y','00ff00', 60, 'x', 'y')
+  // blockFont.writeString('#x-y', 'Green - x-y','00ff00', 60, 'x', 'y')
   // blockFont.writeString('#y-h', 'Cyan - y-h','00ffff', 60, 'y', 'h')
   // blockFont.writeString('#y-x', 'Blue - y-x','0000ff', 60, 'y', 'x')
   // blockFont.writeString('#y-y', 'Magenta - y-y','ff00ff', 60, 'y', 'y')
