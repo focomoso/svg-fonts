@@ -9,7 +9,7 @@
 
     <style type="text/css">
 
-      #name-output, #password-output {
+      #Xname-output, #Xpassword-output {
         background-color: #999999;
         height: 20;
         width: 20;
@@ -17,7 +17,7 @@
         border: solid #999999 1px;
         padding: 10;
       }
-      #name-output:hover, #password-output:hover {
+      #Xname-output:hover, #Xpassword-output:hover {
         outline: none;
         box-sizing: border-box;
         border: solid red 1px;
@@ -29,6 +29,23 @@
         overflow: hidden;
       }
       #name-input {
+      }
+      #name-output, #password-output {
+        width: 0;
+        height: 0;
+        border: 150px solid transparent;
+        border-bottom: 75px solid #999999;
+        position: relative;
+        top: -50px;
+      }
+      #name-output:after, #password-output:after {
+        content: '';
+        position: absolute;
+        left: -150px; top: 75px;
+        width: 0;
+        height: 0;
+        border: 150px solid transparent;
+        border-top: 70px solid #999999;
       }
     </style>
 
