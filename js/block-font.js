@@ -125,7 +125,8 @@ var BlockFont = (function () {
        */
       writeGlyph: function( glyph, color, charHeight, charDir, x, y ) {
         var dim = charHeight/9;
-        var width; // get the multiplier from length of arrays in block-src
+        var width;
+        var height;
         var str = '';
 
         var blockSrc = BlockSrc[glyph];
@@ -133,9 +134,12 @@ var BlockFont = (function () {
         if ( typeof(blockSrc) === 'undefined' )
           blockSrc = BlockSrc['missing'];
 
+        width = dim * blockSrc[0].length;
+        height = charHeight + dim * blockSrc[0].length
 
         for (var by = blockSrc.length - 1; by >= 0; by--) {
-          width = dim * blockSrc[by].length;
+
+
           for (var bx = 0; bx < blockSrc[by].length; bx++) {
             if (blockSrc[by][bx])
               str += drawBlock( color, x+dim*bx, y+dim*bx/2+dim*by, dim*2, dim*2);
@@ -144,7 +148,8 @@ var BlockFont = (function () {
 
         return {
           svgStr: str,
-          width: width
+          width: width,
+          height: height
         };
       },
 
@@ -161,8 +166,10 @@ var BlockFont = (function () {
        */
       writeString: function( selector, str, color, charHeight, charDir, stringDir ) {
 
-        var x = y = 0;
+        var x = 0;
+        var y = 0;
         var width = height = 0;
+        var offset = 0;
         var bodyStr = '';
         var padding = charHeight / 9 * 2;
 
@@ -171,15 +178,48 @@ var BlockFont = (function () {
         var strData = str.split('');
 
         $.each(strData, function(i,v){
-          glyph = instance.writeGlyph(v, color, charHeight, charDir, width, height);
+
+          glyph = instance.writeGlyph(v, color, charHeight, charDir, x, y);
+
           bodyStr += glyph.svgStr;
-          width += glyph.width + padding;
-          height += glyph.width/2 + padding / 2;
+
+          x += glyph.width + padding;
+
+          switch (stringDir) {
+            case 'h':
+              // y doesn't change
+              break;
+            case 'x':
+              y += glyph.width/2 + padding / 2;
+              break;
+            case 'y':
+              y -= glyph.width/2 + padding / 2;
+              break;
+          }
         });
 
+        width = x;
+
+        switch (stringDir) {
+          case 'h':
+            height = charHeight;
+            offset = 0;
+            break;
+          case 'x':
+            height = y;
+            offset = height + charHeight;
+            break;
+          case 'y':
+            height = y * -1;
+            offset = height - charHeight;
+            break;
+        }
+
         svgStr = '<svg width="' + width + '" height="' + height + '" overflow="visible">'
+            + '<g transform="translate(0,' + offset + ')">'
             + bodyStr
-            + "</svg>";
+            + '</g>'
+            + '</svg>';
 
         $(selector).append(svgStr);
 
