@@ -37,16 +37,16 @@
       #name-input {
       }
 
-      }
     </style>
 
   </head>
 
   <body>
     <div>
+      <div id="x-y"></div>
+
       <div id="x-h"></div>
       <div id="x-x"></div>
-      <div id="x-y"></div>
       <div id="y-h"></div>
       <div id="y-x"></div>
       <div id="y-y"></div>
@@ -81,16 +81,16 @@ var blockFont = BlockFont.getInstance();
 
 $( document ).ready( function() {
 
-  blockFont.writeString('#x-h', 'Red - x-h','ff0000', 60, 'x', 'h')
-  blockFont.writeString('#x-x', 'Yellow - x-x','ffff00', 60, 'x', 'x')
+  // blockFont.writeString('#x-h', 'Red - x-h','ff0000', 60, 'x', 'h')
+  // blockFont.writeString('#x-x', 'Yellow - x-x','ffff00', 60, 'x', 'x')
   blockFont.writeString('#x-y', 'Green - x-y','00ff00', 60, 'x', 'y')
-  blockFont.writeString('#y-h', 'Cyan - y-h','00ffff', 60, 'y', 'h')
-  blockFont.writeString('#y-x', 'Blue - y-x','0000ff', 60, 'y', 'x')
-  blockFont.writeString('#y-y', 'Magenta - y-y','ff00ff', 60, 'y', 'y')
+  // blockFont.writeString('#y-h', 'Cyan - y-h','00ffff', 60, 'y', 'h')
+  // blockFont.writeString('#y-x', 'Blue - y-x','0000ff', 60, 'y', 'x')
+  // blockFont.writeString('#y-y', 'Magenta - y-y','ff00ff', 60, 'y', 'y')
 
 
-  blockFont.writeString('#name-label', 'Name:','00ff00', 45, 'y', 'h')
-  blockFont.writeString('#password-label', 'Password:','00ffff', 45, 'y', 'h')
+  // blockFont.writeString('#name-label', 'Name:','00ff00', 45, 'y', 'h')
+  // blockFont.writeString('#password-label', 'Password:','00ffff', 45, 'y', 'h')
 });
 
 $('#name-input').bind('input', function(e) {
